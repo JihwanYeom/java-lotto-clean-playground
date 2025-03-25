@@ -1,17 +1,16 @@
 package view;
 
+import domain.Price;
 import java.util.Scanner;
 
 public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static Integer readPrice() {
-
+    public static Price inputPrice() {
         System.out.println("구입금액을 입력해 주세요.");
-        Integer price = scanner.nextInt();
-        return price;
 
+        return Price.from(scanner.nextInt());
     }
 
 }

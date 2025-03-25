@@ -5,13 +5,17 @@ import java.util.List;
 
 public class Lotto {
 
-    private final List<Integer> lottoNumbers;
+    private final List<LottoNumber> lottoNumbers;
 
-    public Lotto(LottoNumberGenerator lottoNumberGenerator) {
-        lottoNumbers = lottoNumberGenerator.generate();
+    private Lotto(List<LottoNumber> lottoNumbers) {
+        this.lottoNumbers = lottoNumbers;
     }
 
-    public List<Integer> getLottoNumbers() {
+    public static Lotto of(List<LottoNumber> lottoNumbers) {
+        return new Lotto(lottoNumbers);
+    }
+
+    public List<LottoNumber> getLottoNumbers() {
         return Collections.unmodifiableList(lottoNumbers);
     }
 }

@@ -6,18 +6,20 @@ import java.util.List;
 
 public class RandomLottoNumberGenerator implements LottoNumberGenerator {
 
-    private final List<Integer> allLottoNumbers;
+    private static final int NUMBER_OF_ALL_LOTTO_NUMBERS = 45;
+
+    private final List<LottoNumber> allLottoNumbers;
 
     public RandomLottoNumberGenerator() {
         this.allLottoNumbers = new ArrayList<>();
-        for(int i = 1; i < 46; i++)
-            this.allLottoNumbers.add(i);
+        for(int i = 1; i <=  NUMBER_OF_ALL_LOTTO_NUMBERS; i++)
+            this.allLottoNumbers.add(LottoNumber.from(i));
     }
 
     @Override
-    public List<Integer> generate() {
+    public List<LottoNumber> generateLottoNumbers() {
         Collections.shuffle(allLottoNumbers);
-        List<Integer> lottoNumber = new ArrayList<>(allLottoNumbers.subList(0, 6));
+        List<LottoNumber> lottoNumber = new ArrayList<>(allLottoNumbers.subList(0, 6));
         Collections.sort(lottoNumber);
         return lottoNumber;
     }

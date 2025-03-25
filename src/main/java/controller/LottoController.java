@@ -1,6 +1,8 @@
 package controller;
 
 import domain.Lotto;
+import domain.Lottos;
+import domain.Price;
 import domain.RandomLottoNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,19 +12,20 @@ import view.OutputView;
 public class LottoController {
 
     private static final RandomLottoNumberGenerator generator = new RandomLottoNumberGenerator();
+    private static final int PRICE_PER_LOTTO = 1000;
 
     public void run() {
-        //구매금액 입력
-        final Integer price = InputView.readPrice();
-        final Integer lottoCount = price/1000;
-
-        //결과 출력
-        List<Lotto> lottoList = new ArrayList<>();
-        for (int i = 0; i < lottoCount; i++) {
-            lottoList.add(new Lotto(generator));
-        }
-
-        OutputView.printResult(lottoList);
-
+        final Price price = InputView.inputPrice();
+        final Lottos lottos = buyLottos(price);
+        OutputView.printLottos(lottos);
     }
+
+    public Lottos buyLottos(Price price) {
+        List<Lotto> lottoList = new ArrayList<>();
+        for (int i = 0; i < price.getPrice()/PRICE_PER_LOTTO; i++) {
+            lottoList.add(Lotto.of(generator.generateLottoNumbers()));
+        }
+        return Lottos.of(lottoList);
+    }
+
 }
