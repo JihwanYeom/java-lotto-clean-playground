@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lottos {
@@ -16,6 +17,14 @@ public class Lottos {
 
     public int count() {
         return lottos.size();
+    }
+
+    public LottoRanks rankLottos(Lotto winningNumber) {
+        List<LottoRank> ranks = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            ranks.add(lotto.getRank(winningNumber));
+        }
+        return LottoRanks.of(ranks);
     }
 
     public List<Lotto> getLottos() {

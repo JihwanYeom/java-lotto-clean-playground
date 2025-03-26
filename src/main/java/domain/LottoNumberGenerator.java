@@ -3,5 +3,5 @@ package domain;
 import java.util.List;
 
 public interface LottoNumberGenerator {
-    public List<LottoNumber> generateLottoNumbers();
+    List<LottoNumber> generateLottoNumbers();
 }

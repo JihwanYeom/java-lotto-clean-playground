@@ -15,7 +15,16 @@ public class Lotto {
         return new Lotto(lottoNumbers);
     }
 
+    public LottoRank getRank(Lotto winningNumbers) {
+        return LottoRank.from(
+                (int) lottoNumbers.stream()
+                .filter(lottoNumber -> winningNumbers.getLottoNumbers().contains(lottoNumber))
+                .count()
+        );
+    }
+
     public List<LottoNumber> getLottoNumbers() {
         return Collections.unmodifiableList(lottoNumbers);
     }
+
 }

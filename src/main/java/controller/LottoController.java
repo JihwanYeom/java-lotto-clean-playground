@@ -1,6 +1,8 @@
 package controller;
 
 import domain.Lotto;
+import domain.LottoRank;
+import domain.LottoRanks;
 import domain.Lottos;
 import domain.Price;
 import domain.RandomLottoNumberGenerator;
@@ -18,6 +20,13 @@ public class LottoController {
         final Price price = InputView.inputPrice();
         final Lottos lottos = buyLottos(price);
         OutputView.printLottos(lottos);
+
+        final Lotto winningNumbers = InputView.inputWinningNumbers();
+        LottoRanks lottoRanks = lottos.rankLottos(winningNumbers);
+
+        final Price totalPrize = lottoRanks.getTotalPrize();
+        OutputView.printRankResult(lottoRanks);
+        OutputView.printRateOfReturn(totalPrize, price);
     }
 
     public Lottos buyLottos(Price price) {
