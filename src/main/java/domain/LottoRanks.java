@@ -22,10 +22,6 @@ public class LottoRanks {
         return new LottoRanks(lottoRanks);
     }
 
-    public List<LottoRank> getLottoRanks() {
-        return Collections.unmodifiableList(lottoRanks);
-    }
-
     public Price getTotalPrize() {
         Price totalPrize = Price.from(0);
         for (int rank = MIN_RANK_FOR_PRIZE; rank <= MAX_RANK_FOR_PRIZE; rank++) {

@@ -2,7 +2,7 @@ package domain;
 
 public class Price {
 
-    private int price;
+    private final int price;
 
     private Price(int price) {
         this.price = price;

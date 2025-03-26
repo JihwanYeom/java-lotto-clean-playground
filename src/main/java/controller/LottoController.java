@@ -1,7 +1,6 @@
 package controller;
 
 import domain.Lotto;
-import domain.LottoRank;
 import domain.LottoRanks;
 import domain.Lottos;
 import domain.Price;
