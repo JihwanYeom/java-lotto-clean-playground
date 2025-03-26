@@ -15,4 +15,5 @@ public class LottoRank {
     public int getLottoRank() {
         return lottoRank;
     }
+    
 }

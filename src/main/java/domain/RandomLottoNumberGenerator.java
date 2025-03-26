@@ -14,8 +14,9 @@ public class RandomLottoNumberGenerator implements LottoNumberGenerator {
 
     public RandomLottoNumberGenerator() {
         this.allLottoNumbers = new ArrayList<>();
-        for(int lottoNumber = MIN_OF_LOTTO_NUMBERS; lottoNumber <=  MAX_OF_LOTTO_NUMBERS; lottoNumber++)
+        for (int lottoNumber = MIN_OF_LOTTO_NUMBERS; lottoNumber <= MAX_OF_LOTTO_NUMBERS; lottoNumber++) {
             this.allLottoNumbers.add(LottoNumber.from(lottoNumber));
+        }
     }
 
     @Override
