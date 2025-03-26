@@ -6,6 +6,7 @@ import domain.LottoRank;
 import domain.LottoRanks;
 import domain.Lottos;
 import domain.Price;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -17,10 +18,11 @@ public class OutputView {
         System.out.println(lottos.count() +"개를 구매했습니다.");
 
         for(Lotto lotto : lottos.getLottos()) {
-            System.out.println(lotto.getLottoNumbers()
-                    .stream()
+            List<Integer> LottoNumberList =
+                    lotto.getLottoNumbers().stream()
                     .map(LottoNumber::getLottoNumber)
-                    .collect(Collectors.toList()));
+                    .collect(Collectors.toList());
+            System.out.println(LottoNumberList);
         }
     }
 

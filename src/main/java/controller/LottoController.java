@@ -31,7 +31,7 @@ public class LottoController {
 
     public Lottos buyLottos(Price price) {
         List<Lotto> lottoList = new ArrayList<>();
-        for (int i = 0; i < price.getPrice()/PRICE_PER_LOTTO; i++) {
+        for (int i = 0; i < price.getPrice() / PRICE_PER_LOTTO; i++) {
             lottoList.add(Lotto.of(generator.generateLottoNumbers()));
         }
         return Lottos.of(lottoList);
