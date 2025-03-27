@@ -12,6 +12,15 @@ public class LottoRank {
         return new LottoRank(lottoRank);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+
+        LottoRank lottoRank = (LottoRank) obj;
+        return this.lottoRank == lottoRank.getLottoRank();
+    }
+
     public int getLottoRank() {
         return lottoRank;
     }

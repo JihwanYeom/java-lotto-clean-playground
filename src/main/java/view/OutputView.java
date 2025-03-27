@@ -30,7 +30,7 @@ public class OutputView {
         System.out.println("당첨 통계\n---------");
         for(int rank = MIN_RANK_FOR_PRIZE; rank <= MAX_RANK_FOR_PRIZE; rank++) {
             LottoRank lottoRank = LottoRank.from(rank);
-            System.out.println(rank+"개 일치 (" + lottoRanks.prizeOfRank(lottoRank)
+            System.out.println(rank+"개 일치 (" + lottoRanks.getPrizeOfRank(lottoRank)
                     + "원)- " + lottoRanks.getNumberOfRank(lottoRank) +"개");
         }
     }

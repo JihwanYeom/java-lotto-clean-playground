@@ -22,11 +22,16 @@ public class InputView {
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
         scanner.nextLine();
         List<String> winningNumbers = Arrays.asList(scanner.nextLine().split(","));
+
+        return Lotto.of(getWinningNumberList(winningNumbers));
+    }
+
+    public static List<LottoNumber> getWinningNumberList(List<String> winningNumbers) {
         List<LottoNumber> winningNumberList =
                 winningNumbers.stream()
                 .map(winningNumber -> LottoNumber.from(Integer.parseInt(winningNumber)))
                 .collect(Collectors.toList());
-        return Lotto.of(winningNumberList);
+        return winningNumberList;
     }
 
 }

@@ -25,7 +25,7 @@ public class LottoRanks {
         Price totalPrize = Price.from(0);
         for (int rank = MIN_RANK_FOR_PRIZE; rank <= MAX_RANK_FOR_PRIZE; rank++) {
             LottoRank lottoRank = LottoRank.from(rank);
-            totalPrize = totalPrize.add(getNumberOfRank(lottoRank) * prizeOfRank(lottoRank));
+            totalPrize = totalPrize.add(getNumberOfRank(lottoRank) * getPrizeOfRank(lottoRank));
         }
         return totalPrize;
     }
@@ -36,12 +36,16 @@ public class LottoRanks {
                 .count();
     }
 
-    public int prizeOfRank(LottoRank lottoRank) {
+    public int getPrizeOfRank(LottoRank lottoRank) {
         if (lottoRank.getLottoRank() == 3) return PRIZE_FOR_RANK_3;
         if (lottoRank.getLottoRank() == 4) return PRIZE_FOR_RANK_4;
         if (lottoRank.getLottoRank() == 5) return PRIZE_FOR_RANK_5;
         if (lottoRank.getLottoRank() == 6) return PRIZE_FOR_RANK_6;
         return 0;
+    }
+
+    public List<LottoRank> getRanks() {
+        return lottoRanks;
     }
 
 }
