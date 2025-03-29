@@ -23,18 +23,18 @@ public class LottoRanksTest {
                 .isEqualTo(5000 + 50000 + 150000 + 2000000000);
     }
 
-    @DisplayName("순위에 따른 총 상금 계산 테스트")
+    @DisplayName("랭크 개수 테스트")
     @Test
     public void testGetNumberOfRank() {
         List<LottoRank> rankList = new ArrayList<>();
         rankList.add(LottoRank.from(3));
-        rankList.add(LottoRank.from(4));
+        rankList.add(LottoRank.from(3));
         rankList.add(LottoRank.from(5));
         rankList.add(LottoRank.from(6));
+
         LottoRanks testLottoRanks = LottoRanks.of(rankList);
 
-        assertThat(testLottoRanks.getNumberOfRank(LottoRank.from(3))).isEqualTo(1);
-        assertThat(testLottoRanks.getNumberOfRank(LottoRank.from(4))).isEqualTo(1);
+        assertThat(testLottoRanks.getNumberOfRank(LottoRank.from(3))).isEqualTo(2);
         assertThat(testLottoRanks.getNumberOfRank(LottoRank.from(5))).isEqualTo(1);
         assertThat(testLottoRanks.getNumberOfRank(LottoRank.from(6))).isEqualTo(1);
     }
