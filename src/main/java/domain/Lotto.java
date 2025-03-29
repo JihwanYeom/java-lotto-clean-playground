@@ -21,11 +21,15 @@ public class Lotto {
     }
 
     public LottoRank getRank(Lotto winningNumbers) {
-        final int rankNumber =
+        int rankNumber =
                 (int) lottoNumbers.stream()
-                .filter(lottoNumber -> winningNumbers.getLottoNumbers().contains(lottoNumber))
+                .filter(winningNumbers::contains)
                 .count();
         return LottoRank.from(rankNumber);
+    }
+
+    private boolean contains(LottoNumber lottoNumber) {
+        return lottoNumbers.contains(lottoNumber);
     }
 
     public List<LottoNumber> getLottoNumbers() {

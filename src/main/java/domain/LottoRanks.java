@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class LottoRanks {
@@ -31,9 +32,7 @@ public class LottoRanks {
     }
 
     public int getNumberOfRank(LottoRank rank) {
-        return (int) lottoRanks.stream()
-                .filter(lottoRank -> lottoRank.getLottoRank() == rank.getLottoRank())
-                .count();
+        return Collections.frequency(lottoRanks, rank);
     }
 
     public int getPrizeOfRank(LottoRank lottoRank) {
