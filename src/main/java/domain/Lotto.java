@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,8 +31,10 @@ public class Lotto {
         return lottoNumbers.contains(lottoNumber);
     }
 
-    public List<LottoNumber> getLottoNumbers() {
-        return Collections.unmodifiableList(lottoNumbers);
+    public List<Integer> getNumbers() {
+        return lottoNumbers.stream()
+                .map(LottoNumber::getLottoNumber)
+                .collect(Collectors.toList());
     }
 
 }
