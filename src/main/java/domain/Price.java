@@ -16,6 +16,8 @@ public class Price {
         return Price.from(price + addPrice);
     }
 
+    public int divideBy(int divisor) { return price / divisor; }
+
     public int getPrice() {
         return price;
     }
