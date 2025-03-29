@@ -20,7 +20,7 @@ public class Lottos {
     }
 
     public LottoRanks rankLottos(Lotto winningNumber) {
-        final List<LottoRank> ranks = new ArrayList<>();
+        List<LottoRank> ranks = new ArrayList<>();
         for (Lotto lotto : lottos) {
             ranks.add(lotto.getRank(winningNumber));
         }

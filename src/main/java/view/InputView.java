@@ -1,8 +1,5 @@
 package view;
 
-import domain.Lotto;
-import domain.LottoNumber;
-import domain.Price;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -12,26 +9,19 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static Price inputPrice() {
+    public static Integer inputPrice() {
         System.out.println("구입금액을 입력해 주세요.");
-
-        return Price.from(scanner.nextInt());
+        return scanner.nextInt();
     }
 
-    public static Lotto inputWinningNumbers() {
+    public static List<Integer> inputWinningNumbers() {
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
         scanner.nextLine();
         List<String> winningNumbers = Arrays.asList(scanner.nextLine().split(","));
-        winningNumbers = winningNumbers.stream().map(number -> number.trim()).collect(Collectors.toList());
-        return Lotto.of(getWinningNumberList(winningNumbers));
-    }
 
-    public static List<LottoNumber> getWinningNumberList(List<String> winningNumbers) {
-        final List<LottoNumber> winningNumberList =
-                winningNumbers.stream()
-                .map(winningNumber -> LottoNumber.from(Integer.parseInt(winningNumber)))
+        return winningNumbers.stream()
+                .map(number -> Integer.parseInt(number.trim()))
                 .collect(Collectors.toList());
-        return winningNumberList;
     }
 
 }

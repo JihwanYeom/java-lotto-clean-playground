@@ -1,7 +1,9 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
 
@@ -11,8 +13,11 @@ public class Lotto {
         this.lottoNumbers = lottoNumbers;
     }
 
-    public static Lotto of(List<LottoNumber> lottoNumbers) {
-        return new Lotto(lottoNumbers);
+    public static Lotto of(List<Integer> numbers) {
+        List<LottoNumber> lotto = numbers.stream()
+                .map(LottoNumber::from)
+                .collect(Collectors.toList());
+        return new Lotto(lotto);
     }
 
     public LottoRank getRank(Lotto winningNumbers) {
