@@ -1,7 +1,6 @@
 import static org.assertj.core.api.Assertions.assertThat;
 
 import domain.Lotto;
-import domain.LottoNumber;
 import domain.LottoRank;
 import domain.Lottos;
 import java.util.ArrayList;
