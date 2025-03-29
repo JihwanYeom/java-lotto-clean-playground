@@ -21,7 +21,7 @@ public class LottoNumber implements Comparable<LottoNumber> {
         if (obj == null || getClass() != obj.getClass())
             return false;
 
-        LottoNumber lottoNumber = (LottoNumber) obj;
+        final LottoNumber lottoNumber = (LottoNumber) obj;
         return this.lottoNumber == lottoNumber.getLottoNumber();
     }
 

@@ -17,7 +17,7 @@ public class LottoRank {
         if (obj == null || getClass() != obj.getClass())
             return false;
 
-        LottoRank lottoRank = (LottoRank) obj;
+        final LottoRank lottoRank = (LottoRank) obj;
         return this.lottoRank == lottoRank.getLottoRank();
     }
 

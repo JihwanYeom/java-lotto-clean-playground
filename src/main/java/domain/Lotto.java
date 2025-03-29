@@ -16,7 +16,7 @@ public class Lotto {
     }
 
     public LottoRank getRank(Lotto winningNumbers) {
-        int rankNumber =
+        final int rankNumber =
                 (int) lottoNumbers.stream()
                 .filter(lottoNumber -> winningNumbers.getLottoNumbers().contains(lottoNumber))
                 .count();

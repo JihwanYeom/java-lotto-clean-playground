@@ -18,7 +18,7 @@ public class OutputView {
         System.out.println(lottos.count() +"개를 구매했습니다.");
 
         for(Lotto lotto : lottos.getLottos()) {
-            List<Integer> LottoNumberList =
+            final List<Integer> LottoNumberList =
                     lotto.getLottoNumbers().stream()
                     .map(LottoNumber::getLottoNumber)
                     .collect(Collectors.toList());
@@ -29,7 +29,7 @@ public class OutputView {
     public static void printRankResult(LottoRanks lottoRanks) {
         System.out.println("당첨 통계\n---------");
         for(int rank = MIN_RANK_FOR_PRIZE; rank <= MAX_RANK_FOR_PRIZE; rank++) {
-            LottoRank lottoRank = LottoRank.from(rank);
+            final LottoRank lottoRank = LottoRank.from(rank);
             System.out.println(rank+"개 일치 (" + lottoRanks.getPrizeOfRank(lottoRank)
                     + "원)- " + lottoRanks.getNumberOfRank(lottoRank) +"개");
         }

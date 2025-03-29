@@ -22,7 +22,7 @@ public class RandomLottoNumberGenerator implements LottoNumberGenerator {
     @Override
     public List<LottoNumber> generateLottoNumbers() {
         Collections.shuffle(allLottoNumbers);
-        List<LottoNumber> lottoNumber = new ArrayList<>(allLottoNumbers.subList(0, NUMBER_OF_LOTTO_NUMBERS));
+        final List<LottoNumber> lottoNumber = new ArrayList<>(allLottoNumbers.subList(0, NUMBER_OF_LOTTO_NUMBERS));
         Collections.sort(lottoNumber);
         return lottoNumber;
     }
