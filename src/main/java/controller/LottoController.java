@@ -17,7 +17,7 @@ public class LottoController {
 
     public void run() {
         final Price price = Price.from(InputView.inputPrice());
-        final Lottos lottos = buyLottos(price);
+        final Lottos lottos = Lottos.buy(price, generator);
         OutputView.printLottos(lottos);
 
         final Lotto winningNumbers = Lotto.of(InputView.inputWinningNumbers());
@@ -28,12 +28,6 @@ public class LottoController {
         OutputView.printRateOfReturn(totalPrize, price);
     }
 
-    public Lottos buyLottos(Price price) {
-        List<Lotto> lottoList = new ArrayList<>();
-        for (int i = 0; i < price.divideBy(PRICE_PER_LOTTO); i++) {
-            lottoList.add(Lotto.of(generator.generateRandomNumbers()));
-        }
-        return Lottos.of(lottoList);
-    }
+
 
 }
