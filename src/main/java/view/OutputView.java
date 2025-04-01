@@ -4,12 +4,10 @@ import domain.Lotto;
 import domain.LottoRank;
 import domain.LottoRanks;
 import domain.Lottos;
-import domain.Price;
+import domain.Money;
+import domain.ProfitRate;
 
 public class OutputView {
-
-    private static final int MIN_RANK_FOR_PRIZE = 3;
-    private static final int MAX_RANK_FOR_PRIZE = 6;
 
     public static void printLottos(Lottos lottos) {
         System.out.println(lottos.count() +"개를 구매했습니다.");
@@ -21,15 +19,15 @@ public class OutputView {
 
     public static void printRankResult(LottoRanks lottoRanks) {
         System.out.println("당첨 통계\n---------");
-        for(int rank = MIN_RANK_FOR_PRIZE; rank <= MAX_RANK_FOR_PRIZE; rank++) {
-            final LottoRank lottoRank = LottoRank.from(rank);
-            System.out.println(rank+"개 일치 (" + lottoRanks.getPrizeOfRank(lottoRank)
-                    + "원)- " + lottoRanks.getNumberOfRank(lottoRank) +"개");
+        for(LottoRank lottoRank : LottoRank.values()) {
+            System.out.println( lottoRank.getMatchNumberCount() + "개 일치 ("
+                    + lottoRank.getPrize() + "원)- "
+                    + lottoRanks.getNumberOfRank(lottoRank) +"개");
         }
     }
 
-    public static void printRateOfReturn(Price totalPrize, Price price) {
-        System.out.println("총 수익률은 " + (double)totalPrize.getPrice()/(double)price.getPrice() + "입니다.");
+    public static void printProfitRate(ProfitRate profitRate) {
+        System.out.println("총 수익률은 " + profitRate.getProfitRate() + "입니다.");
     }
 
 }

@@ -6,6 +6,7 @@ import java.util.List;
 public class Lottos {
 
     public static int PRICE_PER_LOTTO = 1000;
+    public static LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
 
     private final List<Lotto> lottos;
 
@@ -13,10 +14,10 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public static Lottos buy(Price price, RandomNumberGenerator generator) {
+    public static Lottos buy(Money money, LottoNumberGenerator generator) {
         List<Lotto> lottoList = new ArrayList<>();
-        for (int i = 0; i < price.divideBy(PRICE_PER_LOTTO); i++) {
-            lottoList.add(Lotto.of(generator.generateRandomNumbers()));
+        for (int i = 0; i < money.divideBy(PRICE_PER_LOTTO); i++) {
+            lottoList.add(Lotto.of(lottoNumberGenerator.generate()));
         }
         return new Lottos(lottoList);
     }
@@ -27,14 +28,6 @@ public class Lottos {
 
     public int count() {
         return lottos.size();
-    }
-
-    public LottoRanks rankLottos(Lotto winningNumber) {
-        List<LottoRank> ranks = new ArrayList<>();
-        for (Lotto lotto : lottos) {
-            ranks.add(lotto.getRank(winningNumber));
-        }
-        return LottoRanks.of(ranks);
     }
 
     public List<Lotto> getLottos() {

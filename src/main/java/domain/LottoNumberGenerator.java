@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RandomNumberGenerator {
+public class LottoNumberGenerator {
 
     private static final int MIN_OF_RANDOM_NUMBERS = 1;
     private static final int MAX_OF_RANDOM_NUMBERS = 45;
@@ -13,14 +13,14 @@ public class RandomNumberGenerator {
 
     private final List<LottoNumber> allLottoNumbers;
 
-    public RandomNumberGenerator() {
+    public LottoNumberGenerator() {
         this.allLottoNumbers = new ArrayList<>();
         for (int lottoNumber = MIN_OF_RANDOM_NUMBERS; lottoNumber <= MAX_OF_RANDOM_NUMBERS; lottoNumber++) {
             this.allLottoNumbers.add(LottoNumber.from(lottoNumber));
         }
     }
 
-    public List<Integer> generateRandomNumbers() {
+    public List<Integer> generate() {
         Collections.shuffle(allLottoNumbers);
         List<LottoNumber> lottoNumbers = new ArrayList<>(allLottoNumbers.subList(0, NUMBER_OF_RANDOM_NUMBERS));
         return lottoNumbers.stream()

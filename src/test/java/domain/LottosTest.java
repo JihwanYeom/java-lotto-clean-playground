@@ -16,8 +16,8 @@ public class LottosTest {
         LottoController testController = new LottoController();
         int expected = 3;
 
-        Price testPrice = Price.from(3000);
-        Lottos testLottos = Lottos.buy(testPrice, new RandomNumberGenerator());
+        Money testMoney = Money.from(3000);
+        Lottos testLottos = Lottos.buy(testMoney, new LottoNumberGenerator());
         int actual = testLottos.getLottos().size();
 
         assertThat(actual).isEqualTo(expected);
@@ -34,8 +34,8 @@ public class LottosTest {
 
         Lotto testWinningNumber = Lotto.of(createNumbersByString("1,2,3,4,5,6"));
 
-        assertThat(testLottos.rankLottos(testWinningNumber).getRanks())
-                .containsOnly(LottoRank.from(6), LottoRank.from(5));
+        assertThat(LottoRankEvaluator.evaluate(testLottos, testWinningNumber))
+                .containsOnly(LottoRank.FIRST_PRIZE, LottoRank.SECOND_PRIZE);
     }
 
     private List<Integer> createNumbersByString(String string) {

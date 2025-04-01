@@ -18,22 +18,20 @@ public class Lotto {
         return new Lotto(lotto);
     }
 
-    public LottoRank getRank(Lotto winningNumbers) {
-        int rankNumber =
-                (int) lottoNumbers.stream()
+    public int matchNumbers(Lotto winningNumbers) {
+        return (int)lottoNumbers.stream()
                 .filter(winningNumbers::contains)
                 .count();
-        return LottoRank.from(rankNumber);
-    }
-
-    private boolean contains(LottoNumber lottoNumber) {
-        return lottoNumbers.contains(lottoNumber);
     }
 
     public List<Integer> getNumbers() {
         return lottoNumbers.stream()
                 .map(LottoNumber::getLottoNumber)
                 .collect(Collectors.toList());
+    }
+
+    private boolean contains(LottoNumber lottoNumber) {
+        return lottoNumbers.contains(lottoNumber);
     }
 
 }

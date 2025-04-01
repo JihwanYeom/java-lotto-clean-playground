@@ -1,35 +1,34 @@
 package domain;
 
-import java.util.Objects;
+public enum LottoRank {
+    FOURTH_PRIZE(3,5000),
+    THIRD_PRIZE(4,50000),
+    SECOND_PRIZE(5,1500000),
+    //SECOND_PRIZE(5,30000000),
+    FIRST_PRIZE(6,2000000000);
 
-public class LottoRank {
+    //final boolean isMatchedWithBonus;
+    final int matchNumberCount;
+    final long prize;
 
-    private final int lottoRank;
-
-    private LottoRank(int lottoRank) {
-        this.lottoRank = lottoRank;
+    LottoRank(int matchNumberCount/*, boolean isMatchedWithBonus*/, long prize) {
+        this.matchNumberCount = matchNumberCount;
+        //this.isMatchedWithBonus = isMatchedWithBonus;
+        this.prize = prize;
     }
 
-    public static LottoRank from(int lottoRank) {
-        return new LottoRank(lottoRank);
+    public static LottoRank valueOfMatch(int matchCount) {
+        if (matchCount == 6) return FIRST_PRIZE;
+        if (matchCount == 5) return SECOND_PRIZE;
+        if (matchCount == 4) return THIRD_PRIZE;
+        return FOURTH_PRIZE;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        if (object == null || getClass() != object.getClass())
-            return false;
-
-        LottoRank lottoRank = (LottoRank) object;
-        return this.lottoRank == lottoRank.getLottoRank();
+    public int getMatchNumberCount() {
+        return matchNumberCount;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(lottoRank);
+    public long getPrize() {
+        return prize;
     }
-
-    public int getLottoRank() {
-        return lottoRank;
-    }
-    
 }
