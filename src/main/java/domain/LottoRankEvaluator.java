@@ -5,15 +5,11 @@ import java.util.stream.Collectors;
 
 public class LottoRankEvaluator {
 
-    public static final int MIN_MATCH_NUMBER_FOR_PRIZE = 3;
-
-    public static List<LottoRank> evaluate(Lottos lottos, Lotto winningNumbers) {
+    public static List<LottoRank> evaluate(Lottos lottos, Lotto winningNumbers, LottoNumber bonusNumber) {
         List<Lotto> lottoList = lottos.getLottos();
 
         return lottoList.stream()
-                .map(lotto -> lotto.matchNumbers(winningNumbers))
-                .filter(matchNumber -> matchNumber >= MIN_MATCH_NUMBER_FOR_PRIZE)
-                .map(LottoRank::valueOfMatch)
+                .map(lotto -> LottoRank.matchRank(lotto.matchNumbers(winningNumbers), lotto.hasBonusNumber(bonusNumber)))
                 .collect(Collectors.toList());
     }
 

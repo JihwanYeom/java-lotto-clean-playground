@@ -24,7 +24,15 @@ public class Lotto {
                 .count();
     }
 
-    public List<Integer> getNumbers() {
+    public boolean hasBonusNumber(LottoNumber bonusNumber) {
+        return lottoNumbers.contains(bonusNumber);
+    }
+
+    public List<LottoNumber> getNumbers() {
+        return lottoNumbers;
+    }
+
+    public List<Integer> getIntegerNumbers() {
         return lottoNumbers.stream()
                 .map(LottoNumber::getLottoNumber)
                 .collect(Collectors.toList());

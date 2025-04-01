@@ -13,16 +13,14 @@ public class OutputView {
         System.out.println(lottos.count() +"개를 구매했습니다.");
 
         for(Lotto lotto : lottos.getLottos()) {
-            System.out.println(lotto.getNumbers());
+            System.out.println(lotto.getIntegerNumbers());
         }
     }
 
     public static void printRankResult(LottoRanks lottoRanks) {
         System.out.println("당첨 통계\n---------");
-        for(LottoRank lottoRank : LottoRank.values()) {
-            System.out.println( lottoRank.getMatchNumberCount() + "개 일치 ("
-                    + lottoRank.getPrize() + "원)- "
-                    + lottoRanks.getNumberOfRank(lottoRank) +"개");
+        for(LottoRank lottoRank : LottoRank.ranks()) {
+            System.out.println( lottoRank.toString() + lottoRanks.getNumberOfRank(lottoRank) +"개");
         }
     }
 

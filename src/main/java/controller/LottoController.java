@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Lotto;
+import domain.LottoNumber;
 import domain.LottoRank;
 import domain.LottoRankEvaluator;
 import domain.LottoRanks;
@@ -21,7 +22,8 @@ public class LottoController {
         OutputView.printLottos(lottos);
 
         final Lotto winningNumbers = Lotto.of(InputView.inputWinningNumbers());
-        LottoRanks lottoRanks = LottoRanks.of(LottoRankEvaluator.evaluate(lottos, winningNumbers));
+        final LottoNumber bonusNumber = LottoNumber.from(InputView.inputBonusNumber());
+        LottoRanks lottoRanks = LottoRanks.of(LottoRankEvaluator.evaluate(lottos, winningNumbers, bonusNumber));
         ProfitRate profitRate = ProfitRate.of(price, lottoRanks.getTotalPrize());
 
         final Money totalPrize = lottoRanks.getTotalPrize();
