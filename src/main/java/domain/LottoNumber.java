@@ -8,6 +8,7 @@ public class LottoNumber implements Comparable<LottoNumber> {
 
     private final int lottoNumber;
 
+
     private LottoNumber(int lottoNumber) {
         this.lottoNumber = lottoNumber;
     }

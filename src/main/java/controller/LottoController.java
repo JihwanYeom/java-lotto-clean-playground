@@ -26,9 +26,9 @@ public class LottoController {
     }
 
     private Lottos purchase(Money price) {
-        int manuelLottoCount = InputView.inputManuelLottoCount();
-        Lottos lottos = Lottos.buy(price, InputView.inputManuelLottoNumbers(manuelLottoCount));
-        OutputView.printLottoCount(manuelLottoCount, lottos.getCount() - manuelLottoCount);
+        int manualLottoCount = InputView.inputManualLottoCount();
+        Lottos lottos = Lottos.buy(price, InputView.inputManualLottoNumbers(manualLottoCount));
+        OutputView.printLottoCount(manualLottoCount, lottos.getCount() - manualLottoCount);
         OutputView.printLottos(lottos);
         return lottos;
     }

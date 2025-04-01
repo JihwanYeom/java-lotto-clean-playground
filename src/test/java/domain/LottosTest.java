@@ -13,10 +13,10 @@ public class LottosTest {
     @DisplayName("5000원으로 로또를 사면 5장을 살 수 있다")
     void testBuyLottosCount() {
         Money price = Money.from(5000);
-        List<List<Integer>> manuelNumbers = List.of(
+        List<List<Integer>> manualNumbers = List.of(
                 List.of(1, 2, 3, 4, 5, 6)
         );
-        Lottos lottos = Lottos.buy(price, manuelNumbers);
+        Lottos lottos = Lottos.buy(price, manualNumbers);
         int expected = 5;
 
         int actual = lottos.getCount();
@@ -36,15 +36,15 @@ public class LottosTest {
 
     @Test
     @DisplayName("수동으로 로또를 구매 금액보다 많이 구매한 경우 예외가 발생해야 한다")
-    void testManuelPriceBiggerThanTotalPriceException() {
+    void testManualPriceBiggerThanTotalPriceException() {
         Money price = Money.from(2000);
-        List<List<Integer>> manuelNumbers = List.of(
+        List<List<Integer>> manualNumbers = List.of(
                 List.of(1, 2, 3, 4, 5, 6),
                 List.of(1, 2, 3, 4, 5, 6),
                 List.of(1, 2, 3, 4, 5, 6)
         );
 
-        assertThatThrownBy(() -> Lottos.buy(price, manuelNumbers))
+        assertThatThrownBy(() -> Lottos.buy(price, manualNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("수동으로 구매할 로또 구입 금액이 총 구입 금액보다 큽니다.");
     }
