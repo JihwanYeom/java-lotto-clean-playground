@@ -14,7 +14,7 @@ public class LottoNumber implements Comparable<LottoNumber> {
     public static LottoNumber from(int lottoNumber) {
         if (lottoNumber < MINIMUM_LOTTO_NUMBER || lottoNumber > MAXIMUM_LOTTO_NUMBER) {
             throw new IllegalArgumentException(
-                    "로또 번호는 " + MINIMUM_LOTTO_NUMBER + "~" + MAXIMUM_LOTTO_NUMBER + " 사이의 값이어야 합니다.");
+                    "로또 번호는 1~45 사이의 값이어야 합니다.");
         }
         return new LottoNumber(lottoNumber);
     }

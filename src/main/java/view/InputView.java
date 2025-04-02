@@ -27,7 +27,7 @@ public class InputView {
         for (int i = 0; i < manuelLottoCount; i++) {
             String[] numbers = scanner.nextLine().split(",");
             List<Integer> numberList = Arrays.stream(numbers)
-                    .map(Integer::parseInt)
+                    .map(number -> Integer.parseInt(number.trim()))
                     .collect(Collectors.toList());
             manuelNumbersList.add(numberList);
         }

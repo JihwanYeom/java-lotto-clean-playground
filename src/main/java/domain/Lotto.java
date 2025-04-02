@@ -17,7 +17,7 @@ public class Lotto {
     public static Lotto of(List<Integer> numbers) {
 
         if (numbers == null || numbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException("로또 번호는 " + LOTTO_NUMBER_COUNT + "개여야 합니다.");
+            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
 
         if (new HashSet<>(numbers).size() != 6) {
