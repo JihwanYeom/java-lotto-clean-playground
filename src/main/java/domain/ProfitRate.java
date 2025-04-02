@@ -8,8 +8,8 @@ public class ProfitRate {
         this.profitRate = profitRate;
     }
 
-    public static ProfitRate of(Money price, Money totalPrize ) {
-        return new ProfitRate((double) totalPrize.getPrice() / price.getPrice());
+    public static ProfitRate of(Money price, long totalPrize) {
+        return new ProfitRate((double) totalPrize / price.getPrice());
     }
 
     public double getProfitRate() {

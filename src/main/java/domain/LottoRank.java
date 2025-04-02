@@ -5,12 +5,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum LottoRank {
-    FIFTH_PRIZE(3, false,5000),
-    FOURTH_PRIZE(4,false,50000),
-    THIRD_PRIZE(5,false,1500000),
-    SECOND_PRIZE(5,true,30000000),
-    FIRST_PRIZE(6,false,2000000000),
-    NO_PRIZE(0,false,0);
+    FIFTH_PRIZE(3, false, 5000),
+    FOURTH_PRIZE(4, false, 50000),
+    THIRD_PRIZE(5, false, 1500000),
+    SECOND_PRIZE(5, true, 30000000),
+    FIRST_PRIZE(6, false, 2000000000),
+    NO_PRIZE(0, false, 0);
 
     final boolean hasBonusNumber;
     final int matchNumberCount;
@@ -23,16 +23,22 @@ public enum LottoRank {
     }
 
     public static LottoRank matchRank(int matchNumberCount, boolean hasBonusNumber) {
-        if(matchNumberCount == 6) return LottoRank.FIRST_PRIZE;
-        if(matchNumberCount == 5 && hasBonusNumber) return LottoRank.SECOND_PRIZE;
-        if(matchNumberCount == 5) return LottoRank.THIRD_PRIZE;
-        if(matchNumberCount == 4) return LottoRank.FOURTH_PRIZE;
-        if(matchNumberCount == 3) return LottoRank.FIFTH_PRIZE;
+        if (matchNumberCount == 6) {
+            return LottoRank.FIRST_PRIZE;
+        }
+        if (matchNumberCount == 5 && hasBonusNumber) {
+            return LottoRank.SECOND_PRIZE;
+        }
+        if (matchNumberCount == 5) {
+            return LottoRank.THIRD_PRIZE;
+        }
+        if (matchNumberCount == 4) {
+            return LottoRank.FOURTH_PRIZE;
+        }
+        if (matchNumberCount == 3) {
+            return LottoRank.FIFTH_PRIZE;
+        }
         return LottoRank.NO_PRIZE;
-    }
-
-    public int getMatchNumberCount() {
-        return matchNumberCount;
     }
 
     public long getPrize() {
@@ -49,8 +55,9 @@ public enum LottoRank {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append(matchNumberCount).append("개 일치");
-        if(matchNumberCount == 5 && hasBonusNumber)
+        if (matchNumberCount == 5 && hasBonusNumber) {
             builder.append(", 보너스 볼 일치");
+        }
         builder.append(" (").append(prize).append("원) - ");
         return builder.toString();
     }

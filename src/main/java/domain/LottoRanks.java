@@ -15,10 +15,10 @@ public class LottoRanks {
         return new LottoRanks(lottoRanks);
     }
 
-    public Money getTotalPrize() {
-        Money totalPrize = Money.from(0);
+    public long getTotalPrize() {
+        long totalPrize = 0;
         for (LottoRank lottoRank : lottoRanks) {
-            totalPrize = totalPrize.add(lottoRank.getPrize());
+            totalPrize += lottoRank.getPrize();
         }
         return totalPrize;
     }
