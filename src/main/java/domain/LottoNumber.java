@@ -2,6 +2,7 @@ package domain;
 
 public class LottoNumber implements Comparable<LottoNumber> {
 
+
     private static final int MINIMUM_LOTTO_NUMBER = 1;
     private static final int MAXIMUM_LOTTO_NUMBER = 45;
 
@@ -12,6 +13,7 @@ public class LottoNumber implements Comparable<LottoNumber> {
     }
 
     public static LottoNumber from(int lottoNumber) {
+
         if (lottoNumber < MINIMUM_LOTTO_NUMBER || lottoNumber > MAXIMUM_LOTTO_NUMBER) {
             throw new IllegalArgumentException(
                     "로또 번호는 1~45 사이의 값이어야 합니다.");
@@ -25,6 +27,7 @@ public class LottoNumber implements Comparable<LottoNumber> {
 
     @Override
     public boolean equals(Object obj) {
+
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }

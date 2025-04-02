@@ -42,6 +42,7 @@ public class LottoNumberTest {
     @Test
     @DisplayName("로또 번호 2가 로또 번호 1과 같은지 비교하면 거짓이 반환되어야 한다")
     void testLottoNumberIsNotEquals() {
+
         LottoNumber testNumber = LottoNumber.from(2);
         boolean expected = false;
 

@@ -8,6 +8,7 @@ public class Lottos {
     public static int PRICE_PER_LOTTO = 1000;
     public static LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
 
+
     private final List<Lotto> lottos;
 
     private Lottos(List<Lotto> lottos) {
