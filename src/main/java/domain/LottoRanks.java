@@ -27,8 +27,4 @@ public class LottoRanks {
         return Collections.frequency(lottoRanks, rank);
     }
 
-    public List<LottoRank> getRanks() {
-        return lottoRanks;
-    }
-
 }

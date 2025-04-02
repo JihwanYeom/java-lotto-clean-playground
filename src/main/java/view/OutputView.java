@@ -4,23 +4,24 @@ import domain.Lotto;
 import domain.LottoRank;
 import domain.LottoRanks;
 import domain.Lottos;
-import domain.Money;
 import domain.ProfitRate;
 
 public class OutputView {
 
-    public static void printLottos(Lottos lottos) {
-        System.out.println(lottos.count() +"개를 구매했습니다.");
+    public static void printLottoCount(int manuelCount, int autoCount) {
+        System.out.println("수동으로 " + manuelCount + "장, 자동으로 " + autoCount + "개를 구매했습니다.");
+    }
 
-        for(Lotto lotto : lottos.getLottos()) {
-            System.out.println(lotto.getIntegerNumbers());
+    public static void printLottos(Lottos lottos) {
+        for (Lotto lotto : lottos.getLottos()) {
+            System.out.println(lotto.getNumbers());
         }
     }
 
     public static void printRankResult(LottoRanks lottoRanks) {
         System.out.println("당첨 통계\n---------");
-        for(LottoRank lottoRank : LottoRank.ranks()) {
-            System.out.println( lottoRank.toString() + lottoRanks.getNumberOfRank(lottoRank) +"개");
+        for (LottoRank lottoRank : LottoRank.ranks()) {
+            System.out.println(lottoRank.toString() + lottoRanks.getNumberOfRank(lottoRank) + "개");
         }
     }
 

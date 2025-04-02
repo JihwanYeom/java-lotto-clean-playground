@@ -19,7 +19,7 @@ public class Lotto {
     }
 
     public int matchNumbers(Lotto winningNumbers) {
-        return (int)lottoNumbers.stream()
+        return (int) lottoNumbers.stream()
                 .filter(winningNumbers::contains)
                 .count();
     }
@@ -28,11 +28,7 @@ public class Lotto {
         return lottoNumbers.contains(bonusNumber);
     }
 
-    public List<LottoNumber> getNumbers() {
-        return lottoNumbers;
-    }
-
-    public List<Integer> getIntegerNumbers() {
+    public List<Integer> getNumbers() {
         return lottoNumbers.stream()
                 .map(LottoNumber::getLottoNumber)
                 .collect(Collectors.toList());

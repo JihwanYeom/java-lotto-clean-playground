@@ -15,6 +15,9 @@ public class Money {
     public Money add(long addPrice) {
         return Money.from(price + addPrice);
     }
+    public Money sub(long subPrice) {
+        return Money.from(price - subPrice);
+    }
 
     public long divideBy(long divisor) { return price / divisor; }
 
