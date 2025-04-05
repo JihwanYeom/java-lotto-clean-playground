@@ -39,4 +39,15 @@ public class MoneyTest {
 
         assertThat(actual).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("5000에서 2500을 나누면 2가 되어야 한다")
+    void testMoneyDivide() {
+        Money money1 = Money.from(5000);
+        long expected = 2;
+
+        long actual = money1.divideBy(2500);
+
+        assertThat(actual).isEqualTo(expected);
+    }
 }
