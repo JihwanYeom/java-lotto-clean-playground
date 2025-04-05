@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class LottoNumberGeneratorTest {
 
     @Test
-    @DisplayName("생성된 로또 번호가 6개가 아니면 예외를 발생시켜야 한다.")
+    @DisplayName("생성된 로또 번호는 6개여야 한다.")
     void testLottoNumberCount() {
         LottoNumberGenerator generator = new LottoNumberGenerator();
         List<Integer> generatedNumbers = generator.generate();

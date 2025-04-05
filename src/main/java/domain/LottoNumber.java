@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class LottoNumber implements Comparable<LottoNumber> {
 
     private static final int MINIMUM_LOTTO_NUMBER = 1;
@@ -29,13 +31,16 @@ public class LottoNumber implements Comparable<LottoNumber> {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LottoNumber)) return false;
+        LottoNumber that = (LottoNumber) o;
+        return lottoNumber == that.lottoNumber;
+    }
 
-        LottoNumber lottoNumber = (LottoNumber) obj;
-        return this.lottoNumber == lottoNumber.getLottoNumber();
+    @Override
+    public int hashCode() {
+        return Objects.hash(lottoNumber);
     }
 
     @Override
