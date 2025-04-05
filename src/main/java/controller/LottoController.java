@@ -7,6 +7,7 @@ import domain.LottoRanks;
 import domain.Lottos;
 import domain.Money;
 import domain.ProfitRate;
+import java.util.List;
 import view.InputView;
 import view.OutputView;
 
@@ -27,8 +28,11 @@ public class LottoController {
 
     private Lottos purchase(Money price) {
         int manualLottoCount = InputView.inputManualLottoCount();
-        Lottos lottos = Lottos.buy(price, InputView.inputManualLottoNumbers(manualLottoCount));
-        OutputView.printLottoCount(manualLottoCount, lottos.getCount() - manualLottoCount);
+        List<List<Integer>> manualLottoNumbers = InputView.inputManualLottoNumbers(manualLottoCount);
+        Lottos lottos = Lottos.buy(price, manualLottoNumbers);
+
+        int autoLottoCount = lottos.getCount() - manualLottoCount;
+        OutputView.printLottoCount(manualLottoCount, autoLottoCount);
         OutputView.printLottos(lottos);
         return lottos;
     }
