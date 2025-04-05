@@ -12,23 +12,28 @@ public class Lotto {
     private final List<LottoNumber> lottoNumbers;
 
     private Lotto(List<LottoNumber> lottoNumbers) {
+        validateNumberCount(lottoNumbers);
+        validateDuplicate(lottoNumbers);
         this.lottoNumbers = lottoNumbers;
     }
 
-    public static Lotto of(List<Integer> numbers) {
-
-        if (numbers == null || numbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
-        }
-
-        if (new HashSet<>(numbers).size() != 6) {
-            throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
-        }
-
-        List<LottoNumber> lotto = numbers.stream()
+    public static Lotto of(List<Integer> lottoNumbers) {
+        List<LottoNumber> lotto = lottoNumbers.stream()
                 .map(LottoNumber::from)
                 .collect(Collectors.toList());
         return new Lotto(lotto);
+    }
+
+    private void validateNumberCount(List<LottoNumber> lottoNumbers) {
+        if (lottoNumbers == null || lottoNumbers.size() != LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
+        }
+    }
+
+    private void validateDuplicate(List<LottoNumber> lottoNumbers) {
+        if (new HashSet<>(lottoNumbers).size() != 6) {
+            throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
+        }
     }
 
     public int matchNumbers(Lotto winningNumbers) {
