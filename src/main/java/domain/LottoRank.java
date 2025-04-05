@@ -2,6 +2,7 @@ package domain;
 
 
 import java.util.List;
+import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -23,23 +24,19 @@ public enum LottoRank {
         this.prize = prize;
     }
 
-    public static LottoRank matchRank(int matchNumberCount, boolean hasBonusNumber) {
-        if (matchNumberCount == 6) {
-            return LottoRank.FIRST_PRIZE;
-        }
-        if (matchNumberCount == 5 && hasBonusNumber) {
-            return LottoRank.SECOND_PRIZE;
-        }
-        if (matchNumberCount == 5) {
-            return LottoRank.THIRD_PRIZE;
-        }
-        if (matchNumberCount == 4) {
-            return LottoRank.FOURTH_PRIZE;
-        }
-        if (matchNumberCount == 3) {
-            return LottoRank.FIFTH_PRIZE;
-        }
-        return LottoRank.NO_PRIZE;
+    private static final BiPredicate<LottoRank, Integer> checkMatchCount =
+            (rank, count) -> rank.matchNumberCount == count;
+
+    private static final BiPredicate<LottoRank, Boolean> checkBonusNumber =
+            (rank, bonus) -> rank.matchNumberCount != 5 || rank.hasBonusNumber == bonus;
+
+    public static LottoRank matchRank(int matchCount, boolean hasBonus) {
+
+        return Stream.of(values())
+                .filter(rank -> checkMatchCount.test(rank, matchCount))
+                .filter(rank -> checkBonusNumber.test(rank, hasBonus))
+                .findFirst()
+                .orElse(NO_PRIZE);
     }
 
     public long getPrize() {
