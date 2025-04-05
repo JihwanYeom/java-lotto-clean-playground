@@ -30,7 +30,8 @@ public class LottoController {
 
     private Lottos purchase(Money price) {
         int manualLottoCount = InputView.inputManualLottoCount();
-        List<List<Integer>> manualLottoNumbers = parseManualNumbers(InputView.inputManualLottoNumbers(manualLottoCount));
+        List<List<Integer>> manualLottoNumbers = parseManualNumbers(
+                InputView.inputManualLottoNumbers(manualLottoCount));
         Lottos lottos = Lottos.buy(price, manualLottoNumbers);
 
         int autoLottoCount = lottos.getCount() - manualLottoCount;

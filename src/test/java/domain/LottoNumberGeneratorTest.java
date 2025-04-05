@@ -39,7 +39,6 @@ public class LottoNumberGeneratorTest {
         List<Integer> generatedNumbers = generator.generate();
 
         assertThat(generatedNumbers).allMatch(num -> num >= 1 && num <= 45);
-
     }
 
     @Test
