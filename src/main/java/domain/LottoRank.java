@@ -1,40 +1,36 @@
 package domain;
 
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum LottoRank {
-    FIFTH_PRIZE(3, false, 5000),
-    FOURTH_PRIZE(4, false, 50000),
-    THIRD_PRIZE(5, false, 1500000),
-    SECOND_PRIZE(5, true, 30000000),
-    FIRST_PRIZE(6, false, 2000000000),
-    NO_PRIZE(0, false, 0);
+    FIFTH_PRIZE(3, false, 5000, (matchCount, hasBonus) -> matchCount == 3),
+    FOURTH_PRIZE(4, false, 50000, (matchCount, hasBonus) -> matchCount == 4),
+    THIRD_PRIZE(5, false, 150000, (matchCount, hasBonus) -> matchCount == 5 && !hasBonus),
+    SECOND_PRIZE(5, true, 30000000, (matchCount, hasBonus) -> matchCount == 5 && hasBonus),
+    FIRST_PRIZE(6, false, 2000000000, (matchCount, hasBonus) -> matchCount == 6),
+    NO_PRIZE(0, false, 0, (matchCount, hasBonus) -> false);
 
     final boolean hasBonusNumber;
     final int matchNumberCount;
     final long prize;
+    final BiPredicate<Integer, Boolean> checkRank;
 
-    LottoRank(int matchNumberCount, boolean hasBonusNumber, long prize) {
+    LottoRank(int matchNumberCount, boolean hasBonusNumber, long prize,
+              BiPredicate<Integer, Boolean> checkRank) {
         this.matchNumberCount = matchNumberCount;
         this.hasBonusNumber = hasBonusNumber;
         this.prize = prize;
+        this.checkRank = checkRank;
     }
-
-    private static final BiPredicate<LottoRank, Integer> checkMatchCount =
-            (rank, count) -> rank.matchNumberCount == count;
-
-    private static final BiPredicate<LottoRank, Boolean> checkBonusNumber =
-            (rank, bonus) -> rank.matchNumberCount != 5 || rank.hasBonusNumber == bonus;
-
+    
     public static LottoRank matchRank(int matchCount, boolean hasBonus) {
-
-        return Stream.of(values())
-                .filter(rank -> checkMatchCount.test(rank, matchCount))
-                .filter(rank -> checkBonusNumber.test(rank, hasBonus))
+        return Arrays.stream(values())
+                .filter(rank -> rank.checkRank.test(matchCount, hasBonus))
                 .findFirst()
                 .orElse(NO_PRIZE);
     }
@@ -59,5 +55,5 @@ public enum LottoRank {
         builder.append(" (").append(prize).append("원) - ");
         return builder.toString();
     }
-  
+
 }

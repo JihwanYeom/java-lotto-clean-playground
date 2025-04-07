@@ -13,7 +13,8 @@ public class LottoRankEvaluator {
         }
 
         return lottoList.stream()
-                .map(lotto -> LottoRank.matchRank(lotto.matchNumbers(winningNumbers),
+                .map(lotto ->
+                        LottoRank.matchRank(lotto.matchNumbers(winningNumbers),
                         lotto.hasBonusNumber(bonusNumber)))
                 .collect(Collectors.toList());
     }
